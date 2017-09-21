@@ -1,0 +1,23 @@
+{
+  "name": "watson-speech-to-text-service",
+  "version": "1.0.0",
+  "description": "Voice controlled home automation using IBM STT and PubNub",
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "bower install"
+  },
+  "cacheDirectories": ["node_modules", "static/bower_components"],
+  "dependencies": {
+    "bower": "^1.8.0",
+    "defaults": "^1.0.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.13.3",
+    "object.assign": "^4.0.4",
+    "watson-developer-cloud": "^2.18.0",
+    "watson-speech": "*"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IBM Speech to Text Home automation demo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="bower_components/watson-speech/dist/watson-speech.js"></script>
+  <!-- window.fetch pollyfill for IE/Edge & Older Chrome/FireFox -->
+  <script src="bower_components/fetch/fetch.js"></script>
+
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.15.1.js"></script>
+  <script src = "/scripts/env.js"></script>
+  <script src = "/scripts/pbnb.js"></script>
+  <script src = "/scripts/stt.js"></script>
+
+</head>
+<body>
+<div class="container">
+
+<section>
+    <h2>Voice controlled home automation with IBM Speech-to-Text and PubNub</h2>
+
+    Click the 'Speak' button below and speak your voice command to see a demo of voice controlled home automation.
+    <div id="SupportedCommands">
+      Supported commands are:
+      <p>
+      <li>
+        Turn on Living Room light. / Turn off Living Room light.
+      </li>
+      <li>
+        Turn on Kitchen light. / Turn off Kitchen light.
+      </li>
+      <li>
+        Turn on Bedroom light. / Turn off Bedroom light.
+      </li>
+      <li>
+        Turn on Portico light. / Turn off Portico light.
+      </li>
+      <li>
+        Turn on Children room light. / Turn off Children room light.
+      </li>
+    </p>
+  <p>
+      You can use these commands in a sentence or a request like structure. For example, you can say "Can you please turn on the bedroom light?".
+  </p>
+
+    </div>
+    <button id="button" onclick="stt()">Speak</button>
+
+    <h2>Converted Command Text:</h2>
+    <div id="Command_Text"></div>
+</section>
+
+<pre><code><script style="display: block;">
+</script></code></pre>
+
+</div>
+</body>
+</html>
