@@ -1,0 +1,5 @@
+extra/*
+sttserver/.env
+sttserver/node_modules
+sttserver/static/bower_components
+homesimulator/scripts/git_env.js
