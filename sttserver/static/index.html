@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IBM Speech to Text Home automation demo</title>
+    <title>Watson Speech to Text Home automation demo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
   <script src="bower_components/watson-speech/dist/watson-speech.js"></script>
   <!-- window.fetch pollyfill for IE/Edge & Older Chrome/FireFox -->
@@ -20,9 +23,12 @@
 <div class="container">
 
 <section>
-    <h2>Voice controlled home automation with IBM Speech-to-Text and PubNub</h2>
+    <h3>Voice controlled home automation powered by Watson Speech-to-Text</h3>
+<p>
+This file is part of a demo project for voice controlled home automation using IBM Watson Speech to Text API. You can speak one of the supported commands after clicking on the 'Speak' button below. The converted text commands will be published to PubNub network on a particular channel. Accompanying webpage subscribed to PubNub network on the same channel will receive the commands and simualte actions in a SVG image of a home.</p>
 
-    Click the 'Speak' button below and speak your voice command to see a demo of voice controlled home automation.
+<p>The text returned by Watson Speech to Text service will be shown below the 'Speak' button. Any feedback received from the smart home simulator web page will be shown in the Status window.</p>
+
     <div id="SupportedCommands">
       Supported commands are:
       <p>
@@ -47,14 +53,19 @@
   </p>
 
     </div>
-    <button id="button" onclick="stt()">Speak</button>
 
-    <h2>Converted Command Text:</h2>
+    <hr>
+
+    <button id="button" onclick="stt()">Speak</button>
     <div id="Command_Text"></div>
+<hr>
+    <label for="statusBox">Status Feedback</label>
+    <textarea readonly id="statusBox" class="form-control" rows="10"></textarea>
+
+    <hr>
+
 </section>
 
-<pre><code><script style="display: block;">
-</script></code></pre>
 
 </div>
 </body>

@@ -1,8 +1,8 @@
 /************************************************************************
 	Voice based smart home control
 *************************************************************************/
-var devices = ["kitchen", "living room", "portico", "bedroom", "children room"];
-var commands = ["turn on", "turn off"];
+var devices = ["kitchen light", "living room light", "portico light", "bedroom light", "children room light"];
+var bulbs = ['#kitchenbulb', '#livingroombulb', '#livingroombulb', '#bedroombulb', '#porticobulb'];
 
 const channelName =  PUB_NUB_CHANNEL_KEY;
 
@@ -30,6 +30,23 @@ function pub_subscribe(){
   });
 };
 
+function pubmsg (status_msg) {
+  console.log ("Publishing back from home");
+  pubnub.publish(
+        {
+            message: {
+                cmd: status_msg
+            },
+            channel: channelName,
+            sendByPost: false, // true to send via post
+            storeInHistory: false, //override default storage options
+        },
+        function (status, response) {
+            // handle status, response
+        }
+    );
+}
+
 /************************************************************************
 	FUNCTION NAME : home_control()
     DESCRIPTION   : Turn's On/Off the bulb in the home according to
@@ -38,57 +55,34 @@ function pub_subscribe(){
 function home_control(m){
   //console.log (m);
   msg = m.cmd;
-
+  var status_msg = {Type: "status", device: "", status: ""};
   console.log (msg);
 
   if(msg.type == "control") {
 
-		if(msg.device == "kitchen") {
-			if (msg.command == "TURN_ON") {
-				$('#kitchenbulb').css({ fill: "#FFDB55" });
-			}
-			else if (msg.command == "TURN_OFF") {
-				$('#kitchenbulb').css({ fill: "#000000" });
-			}
+    for (i = 0; i < devices.length; i++) {
+      if (msg.device == devices[i]) {
+        status_msg.device = msg.device;
+
+        if (msg.command == "TURN_ON") {
+          $(bulbs[i]).css({ fill: "#FFDB55" });
+          status_msg.status = "turned on";
+          pubmsg (status_msg);
+        }
+        else if (msg.command == "TURN_OFF") {
+          $(bulbs[i]).css({ fill: "#000000" });
+          status_msg.status = "turned off";
+          pubmsg (status_msg);
+        }
+      }
     }
-    else if (msg.device == "living room") {
-			if (msg.command == "TURN_ON"){
-				$('#livingroombulb').css({ fill: "#FFDB55" });
-			}
-      else if (msg.command == "TURN_OFF") {
-				$('#livingroombulb').css({ fill: "#000000" });
-			}
-		}
-    else if(msg.device == "bedroom") {
-			if(msg.command == "TURN_ON") {
-				$('#bedroombulb').css({ fill: "#FFDB55" });
-			}
-      else if (msg.command == "TURN_OFF") {
-				$('#bedroombulb').css({ fill: "#000000" });
-			}
-		}
-    else if(msg.device == "children room"){
-			if (msg.command == "TURN_ON") {
-				$('#childrenroombulb').css({ fill: "#FFDB55" });
-			}
-      else if (msg.command == "TURN_OFF") {
-				$('#childrenroombulb').css({ fill: "#000000" });
-			}
-		}
-    else if(msg.device == "portico"){
-			if(msg.command == "TURN_ON") {
-				$('#porticobulb').css({ fill: "#FFDB55" });
-			}
-      else if (msg.command == "TURN_OFF") {
-				$('#porticobulb').css({ fill: "#000000" });
-			}
-		}
 	}
-  else if(msg.Type == "monitor") {
-    console.log("Monitor message");
+  else if(msg.Type == "status") {
+    console.log("Status message");
+    console.log (msg.device + " " + msg.status)
 	}
   else {
-		console.log("Invalid message");
+		console.log("Invalid message: " + msg.message);
 		//console.log("Received message from block : ",m);
 	}
 };

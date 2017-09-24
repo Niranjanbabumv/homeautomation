@@ -11,7 +11,7 @@ function stt () {
         outputElement: '#Command_Text', // CSS selector or DOM Element
         //outputElement: finalData,
         keywords: ["turn on", "turnon", "switchon", "switch on", "switch", "turn", "on", "off", "kitchen", "light", "door", "garage", "AC", "hall", "drawing room"],
-        keywords_threshold: 0.3,
+        keywords_threshold: 0.2,
         inactivity_timeout: 10
         //interim_results: false
       });
@@ -20,11 +20,11 @@ function stt () {
         if(data.results[0] && data.results[0].final) {
           stream.stop();
           finalData = document.querySelector('#Command_Text').innerHTML;
-
+          
           //finalData = "Turn Off " + finalData;
           //finalData = finalData + "Kitchen Light";
 
-          console.log (finalData);
+          //console.log (finalData);
           console.log('stop listening.');
           pubmsg(finalData);
 
