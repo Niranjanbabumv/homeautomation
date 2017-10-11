@@ -60,7 +60,7 @@ app.use('/api/speech-to-text/token', function(req, res) {
 
 const port = process.env.PORT || 3000;
 app.listen(port, function() {
-  console.log('Example IBM Watson Speech JS SDK client app & token server live at http://localhost:%s/', port);
+  console.log('Voice Controlled Home Automation Demo.. Server is live at http://localhost:%s/', port);
 });
 
 // Chrome requires https to access the user's microphone unless it's a localhost url so
