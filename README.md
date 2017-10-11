@@ -107,13 +107,18 @@ This will install the required modules using node package manager (npm). A few m
 ###### Step 10:
 
 Configure your local environment.
-Create a text file in the same folder (*sttserver*) and name it as **‘.env’.** Populate the file with your PubNub publish, subscribe keys and channel name as shown below.
+a) Create a text file in the same folder (*sttserver*) and name it as **‘.env’.** Populate the file with your IBM Watson Speech to Text service credentials (obtained in step 3 above) as shown below.
 
-Replace the PubNub keys with the publish and subscribe keys obtained in step 6 above.
 ```
-PUB_NUB_CHANNEL_KEY= 'stt_channel'
+SPEECH_TO_TEXT_USERNAME='YOUR_WATSON_SPEECH_TO_TEXT_CREDENTIAL_USERNAME'
+SPEECH_TO_TEXT_PASSWORD='YOUR_WATSON_SPEECH_TO_TEXT_CREDENTIAL_PASSWORD'
+```
+
+b) Open the file ['sttserver/static/scripts/env.js'](sttserver/static/scripts/env.js) and add your PubNub publish and subscribe keys (obtained in step 6 above) to it. The completed file should look like this.
+```
 PUB_NUB_PUBLISH_KEY= 'YOUR_PUBNUB_PUBLISH_KEY'
 PUB_NUB_SUBSCRIBE_KEY= 'YOUR_PUBNUB_SUBSCRIBE_KEY'
+PUB_NUB_CHANNEL_KEY= 'stt_channel'
 ```
 
 ###### Step 11:
@@ -138,7 +143,7 @@ The app is now ready to accept speech commands. We now need to open the home sim
 
 Navigate to the folder ['homesimulator/scripts'](/homesimulator/scripts) and open the file ['homesimulator/scripts/env.js'](/homesimulator/scripts/env.js) in your favourite editor.
 
-Add your PubNub publish and subscribe keys again in this file and save the file. Note that the channel name is already populated in this file. The channel name is same as the one used earlier in the '.env' file in step 10. Note that channel names are case sensitive so make sure that the same name is used in both the files.
+Add your PubNub publish and subscribe keys in this file and save the file. The channel name is already populated in this file so you need to add only the PubNub publish and subscribe keys. The channel name is same as the one used earlier in the '.env' file in step 10. Note that channel names are case sensitive so make sure that the same name is used in both the files. In fact, contents of this file are the same as this file is the same as ['sttserver/static/scripts/env.js'](sttserver/static/scripts/env.js).
 
 Your Completed 'env.js' file should look like this:
 
